@@ -1,8 +1,21 @@
+buildscript {
+    repositories{
+        mavenLocal()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+
+    dependencies {
+        classpath("org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:${sonarqube_gradle_plugin_version}")
+    }
+}
+
 plugins {
     id 'org.springframework.boot' version '2.7.4'
     id 'io.spring.dependency-management' version '1.0.14.RELEASE'
     id 'java'
 }
+apply from: "${project.rootDir}/gradle/config/sonarqube.gradle"
 
 group = 'io.regent.blog'
 version = '0.0.1-SNAPSHOT'
@@ -16,10 +29,6 @@ configurations {
 
 repositories {
     mavenCentral()
-}
-
-ext {
-    set('testcontainersVersion', "1.17.4")
 }
 
 dependencies {
