@@ -1,0 +1,47 @@
+name: Build/Release
+env:
+  PROJECT: blog-rest-api
+on:
+  push:
+    branches:
+      - develop
+      - hotfix
+  release:
+    types: [ published ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+        if: needs.itWasBuiltBefore.outputs.value == 'failure'
+      - name: Set up JDK 17
+        uses: actions/setup-java@v2
+        with:
+          java-version: 17
+          distribution: temurin
+        if: needs.itWasBuiltBefore.outputs.value == 'failure'
+      - name: Cache Gradle packages
+        uses: actions/cache@v2
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
+          restore-keys: ${{ runner.os }}-gradle
+        if: needs.itWasBuiltBefore.outputs.value == 'failure'
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v1
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+      - name: Build And Analysis
+        run: ./gradlew clean build sonarqube --info --parallel
+        if: needs.itWasBuiltBefore.outputs.value == 'failure'
+      - name: Publish Test Report
+        uses: mikepenz/action-junit-report@v2
+        with:
+          report_paths: '**/build/test-results/test/TEST-*.xml'
+        if: ${{ !cancelled() }}
