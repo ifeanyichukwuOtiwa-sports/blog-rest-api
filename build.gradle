@@ -17,7 +17,7 @@ plugins {
 }
 apply from: "${project.rootDir}/gradle/config/sonarqube.gradle"
 
-group = 'io.regent.blog'
+group = 'io.regent'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '17'
 
