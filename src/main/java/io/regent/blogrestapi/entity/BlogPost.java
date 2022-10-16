@@ -9,6 +9,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,6 +24,7 @@ import lombok.ToString;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @ToString(exclude = {"id"})
 @Entity
 @Table(
@@ -35,7 +37,7 @@ public class BlogPost {
     @Id
     @GeneratedValue(
             strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(name = "title", nullable = false)
     private String title;
