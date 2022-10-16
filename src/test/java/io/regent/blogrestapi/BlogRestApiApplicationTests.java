@@ -1,4 +1,4 @@
-package io.regent.blog.blogrestapi;
+package io.regent.blogrestapi;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
