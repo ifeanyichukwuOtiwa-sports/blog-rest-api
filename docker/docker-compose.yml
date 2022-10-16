@@ -1,0 +1,8 @@
+services:
+  blog-mysql:
+    image: mysql:8.0.30-oracle
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+      - MYSQL_DATABASE=regent_blog
+    ports:
+      - "3306:3306"
