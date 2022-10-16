@@ -17,11 +17,10 @@ import org.testcontainers.utility.DockerImageName;
  */
 
 @Configuration
-@Testcontainers
 @SuppressWarnings("resource")
 public class TestConfig {
 
-    @Container
+
     private static final MySQLContainer<?> MY_SQL_CONTAINER = new MySQLContainer<>(
             DockerImageName.parse("mysql:8.0.30-oracle")
     ).withDatabaseName("regent_blog")
@@ -29,6 +28,9 @@ public class TestConfig {
             .withPassword("123456")
             .withExposedPorts(3306);
 
+    static {
+        MY_SQL_CONTAINER.start();
+    }
     public static class Initializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
         @Override
         @SuppressWarnings("all")
