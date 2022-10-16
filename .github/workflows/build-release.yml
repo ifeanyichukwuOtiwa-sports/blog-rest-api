@@ -38,7 +38,7 @@ jobs:
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
       - name: Build And Analysis
-        run: ./gradlew clean build jacocoTestReport sonarqube --info --parallel
+        run: ./gradlew clean build sonarqube --info --parallel
         if: needs.itWasBuiltBefore.outputs.value == 'failure'
       - name: Publish Test Report
         uses: mikepenz/action-junit-report@v2
