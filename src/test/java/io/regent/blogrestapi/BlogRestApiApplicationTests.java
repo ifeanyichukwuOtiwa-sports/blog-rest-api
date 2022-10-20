@@ -7,12 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 
+import io.regent.blogrestapi.config.BlogConfig;
 import io.regent.blogrestapi.config.TestConfig;
 
 @SpringBootTest
 @ContextConfiguration(
         classes = {
-                BlogRestApiApplication.class
+                BlogRestApiApplication.class,
+                BlogConfig.class
         },
         initializers = {
                 TestConfig.Initializer.class
