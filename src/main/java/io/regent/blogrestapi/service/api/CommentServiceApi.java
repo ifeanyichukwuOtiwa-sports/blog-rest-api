@@ -3,6 +3,7 @@ package io.regent.blogrestapi.service.api;
 import java.util.List;
 
 import io.regent.blogrestapi.dtos.CommentDTO;
+import io.regent.blogrestapi.dtos.PagedListDTO;
 
 /**
  * Created by @author Ifeanyichukwu Otiwa
@@ -14,8 +15,7 @@ public interface CommentServiceApi {
 
     List<CommentDTO> getCommentsByPostId(long postId);
 
-    @SuppressWarnings("all")
-//   todo PagedListDTO<Object> getCommentsByPostId(long postId, int pageSize, int pageNo, String sortBy, String sortOrder);
+    PagedListDTO<Object> getCommentsByPostId(long postId, int pageSize, int pageNo, String sortBy, String sortOrder);
 
     CommentDTO getCommentById(Long postId, Long commentId);
 

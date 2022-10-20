@@ -1,6 +1,5 @@
 package io.regent.blogrestapi.service.api;
 
-import java.util.List;
 
 import io.regent.blogrestapi.dtos.ListPostDTO;
 import io.regent.blogrestapi.dtos.PagedListDTO;

@@ -52,8 +52,7 @@ public class CommentServiceApiImpl implements CommentServiceApi {
     }
 
 
-//    @Override
-
+    @Override
     public PagedListDTO<Object> getCommentsByPostId(final long postId, final int pageSize, final int pageNo, final String sortBy,
                                                final String sortOrder) {
         final Sort sorted = Sort.by(sortBy);

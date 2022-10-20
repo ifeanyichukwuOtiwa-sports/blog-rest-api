@@ -101,21 +101,9 @@ public class PostServiceApiImpl implements PostServiceApi {
 
     private BlogPost buildFromDTO(final PostDTO postDTO) {
         return modelMapper.map(postDTO, BlogPost.class);
-//        return BlogPost.builder()
-//                .title(postDTO.title())
-//                .description(postDTO.description())
-//                .content(postDTO.content())
-//                .build();
     }
 
     private PostDTO mapToDTO(final BlogPost savedPost) {
         return modelMapper.map(savedPost, PostDTO.class);
-        //version 1
-//        return new PostDTO(
-//                savedPost.getId(),
-//                savedPost.getTitle(),
-//                savedPost.getDescription(),
-//                savedPost.getContent()
-//        );
     }
 }
