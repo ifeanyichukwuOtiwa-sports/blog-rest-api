@@ -1,4 +1,4 @@
-package io.regent.blogrestapi.exception;
+package io.regent.blogrestapi.interceptor.exception;
 
 import org.springframework.core.NestedExceptionUtils;
 import org.springframework.core.NestedRuntimeException;
@@ -27,6 +27,10 @@ public class ResourceNotFoundException extends NestedRuntimeException {
 
     }
 
+    public int getStatus() {
+        return this.STATUS;
+    }
+
     public ResourceNotFoundException(final String resourceName, final String fieldName, final String fieldValue) {
         this(String.format("%s not found with %s: %s", resourceName, fieldName, fieldValue));
         this.resourceName = resourceName;
@@ -39,7 +43,7 @@ public class ResourceNotFoundException extends NestedRuntimeException {
         HttpStatus code = HttpStatus.resolve(STATUS);
         final String reason = String.format("%s not found with %s: %s", this.getResourceName(), this.getFieldName(),
                 this.getFieldValue());
-        final String msg = (code != null ? code : STATUS) + (reason != null ? " \"" + reason + "\"" : "");
+        final String msg = (code != null ? code : STATUS) + (reason != null ? " " + reason + "" : "");
         return NestedExceptionUtils.buildMessage(msg, getCause());
     }
 }
