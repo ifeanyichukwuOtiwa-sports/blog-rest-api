@@ -26,7 +26,7 @@ public class CommentDTO {
     private String name;
 
     @NotEmpty(message = "email should not be empty")
-    @Email(regexp = ".+[@].+[\\.].+")
+    @Email()
     private String email;
 
     @NotEmpty
