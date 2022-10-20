@@ -2,6 +2,8 @@ package io.regent.blogrestapi.contoller.v1;
 
 import static org.springframework.http.HttpStatus.NO_CONTENT;
 
+import javax.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.regent.blogrestapi.contoller.BlogsMapping;
-import io.regent.blogrestapi.dtos.ListPostDTO;
 import io.regent.blogrestapi.dtos.PagedListDTO;
 import io.regent.blogrestapi.dtos.PostDTO;
 import io.regent.blogrestapi.service.api.PostServiceApi;
@@ -35,7 +36,7 @@ public class PostController {
     private final PostServiceApi postServiceApi;
 
     @PostMapping
-    public ResponseEntity<PostDTO> createPost(@RequestBody final PostDTO postDTO) {
+    public ResponseEntity<PostDTO> createPost(@Valid @RequestBody final PostDTO postDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(postServiceApi.createPost(postDTO));
     }
 
@@ -55,7 +56,7 @@ public class PostController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<PostDTO> updatePost(@PathVariable("id") final Long id, @RequestBody final PostDTO postDTO) {
+    public ResponseEntity<PostDTO> updatePost(@PathVariable("id") final Long id, @Valid @RequestBody final PostDTO postDTO) {
         return ResponseEntity.ok(postServiceApi.updatePostById(id, postDTO));
     }
 

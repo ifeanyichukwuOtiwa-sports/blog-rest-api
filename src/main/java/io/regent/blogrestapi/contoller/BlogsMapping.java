@@ -10,4 +10,6 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class BlogsMapping {
     public final String POST_RESOURCE_V1= "/api/v1/posts";
+
+    public final String COMMENT_RESOURCE_V1 = POST_RESOURCE_V1 +  "/{postId}/comments";
 }
