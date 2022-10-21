@@ -52,6 +52,6 @@ public class BlogPost {
     private String content;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
-    private final Set<Comment> comments = new HashSet<>();
+    private Set<Comment> comments;
 
 }
