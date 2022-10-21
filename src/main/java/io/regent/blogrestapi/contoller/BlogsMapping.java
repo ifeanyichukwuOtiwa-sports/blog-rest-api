@@ -9,7 +9,9 @@ import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class BlogsMapping {
-    public final String POST_RESOURCE_V1= "/api/v1/posts";
+    private static final String ROOT_URL = "/api/v1";
+    public static final String POST_RESOURCE_V1= ROOT_URL + "/posts";
 
-    public final String COMMENT_RESOURCE_V1 = POST_RESOURCE_V1 +  "/{postId}/comments";
+    public static final String COMMENT_RESOURCE_V1 = POST_RESOURCE_V1 +  "/{postId}/comments";
+    public static final String AUTH = ROOT_URL + "/auth";
 }
