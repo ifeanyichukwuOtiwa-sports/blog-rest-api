@@ -17,20 +17,17 @@ jobs:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v2
-        if: needs.itWasBuiltBefore.outputs.value == 'failure'
       - name: Set up JDK 17
         uses: actions/setup-java@v2
         with:
           java-version: 17
           distribution: temurin
-        if: needs.itWasBuiltBefore.outputs.value == 'failure'
       - name: Cache Gradle packages
         uses: actions/cache@v2
         with:
           path: ~/.gradle/caches
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
           restore-keys: ${{ runner.os }}-gradle
-        if: needs.itWasBuiltBefore.outputs.value == 'failure'
       - name: Cache SonarCloud packages
         uses: actions/cache@v1
         with:
